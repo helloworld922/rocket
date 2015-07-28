@@ -1,0 +1,21 @@
+/* Styles added to make my blog look like blogger */
+@CHARSET "UTF-8";
+
+body
+{
+	font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+	font-size: 13px;
+}
+
+a:link {
+text-decoration:none;
+color: #32aaff;
+}
+a:visited {
+text-decoration:none;
+color: #8766dd;
+}
+a:hover {
+text-decoration:underline;
+color: #66bbdd;
+}

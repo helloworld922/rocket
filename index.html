@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <link href="./index_files/blog_style.css" rel="stylesheet" type="text/css">
+
+    <!--<base href="http://localhost/blog_test/">--><base href=".">
+    <link href="./index_files/blog_core.css" rel="stylesheet" type="text/css">
+</head>
+  <body>
+    <h1 class="h1">Rocket Sim</h1>
+<style type="text/css">
+ .plots
+ {
+   margin-left:auto;
+   margin-right:auto;
+ }
+
+ .plots th, .plots td
+ {
+   border: 1px solid;
+   position: relative;
+ }
+
+ .plots canvas.foreground
+ {
+   position: absolute;
+ }
+
+ .rAlign
+ {
+   text-align: right;
+ }
+
+ .hide
+ {
+   display: none;
+ }
+</style>
+
+<table class="plots">
+  <tbody><tr>
+    <td>
+      <canvas class="foreground" id="traj" width="480" height="360&#39;"></canvas>
+      <canvas class="background" id="graph" width="480" height="360"></canvas>
+    </td>
+  </tr>
+</tbody></table>
+
+<table id="properties">
+</table>
+
+<script type="text/javascript" src="./index_files/utils.js"></script>
+<script type="text/javascript" src="./index_files/sim.js"></script>
+
+<table>
+  <tbody><tr>
+    <td><input id="startSim" type="button" value="Start Sim" onclick="startSim();"></td>
+    <td><input id="pauseSim" type="button" value="Pause Sim" onclick="pauseSim();" disabled=""></td>
+    <td><input id="resetSim" type="button" value="Reset Sim" onclick="resetSim();"></td>
+    <td><input id="stepSim" type="button" value="Step Sim" onclick="stepSim();"></td>
+  </tr>
+</tbody></table>
+
+<script type="text/javascript">
+ var updateSteps = 10;
+ var updateRate = 5;
+
+ function changeUpdateSteps(textfield)
+ {
+   updateSteps = parseInt(textfield.value);
+ }
+
+ function changeUpdateRate(textfield)
+ {
+   updateRate = parseInt(textfield.value);
+   if(document.getElementById('startSim').disabled)
+   {
+     window.clearInterval(timerId);
+     timerId = window.setInterval(update, updateRate);
+   }
+ }
+
+ function update()
+ {
+   for(var i = 0; i < updateSteps; ++i)
+   {
+     sim.step_fun(sim);
+     if(sim.y[sim.y.length-1] < 0)
+     {
+       pauseSim();
+     }
+   }
+   updatePlot();
+ }
+
+ function updatePlot()
+ {
+   trajPlot.plot(sim.x, sim.y);
+   // draw the time in the bottom right corner
+   var time = 't = ' + toMetric(sim.t, 2) + 's';
+   var context = trajPlot.plotElement.getContext('2d');
+   context.save();
+   context.translate(simGraph.leftOffset, simGraph.height - simGraph.border[3]);
+   context.fillText(time, simGraph.plotWidth - context.measureText(time).width, 0);
+   context.restore();
+ }
+ 
+ updatePlot();
+
+ var timerId = 0;
+
+ function startSim()
+ {
+   timerId = window.setInterval(update, updateRate);
+   document.getElementById('startSim').disabled = true;
+   document.getElementById('stepSim').disabled = true;
+   document.getElementById('pauseSim').disabled = false;
+ }
+ 
+ function pauseSim()
+ {
+   window.clearInterval(timerId);
+   document.getElementById('startSim').disabled = false;
+   document.getElementById('stepSim').disabled = false;
+   document.getElementById('pauseSim').disabled = true;
+ }
+ 
+ function resetSim()
+ {
+   sim.reset();
+   step = 0;
+   
+   updatePlot();
+ }
+ 
+ function stepSim()
+ {
+   update();
+ }
+
+ // begin with simulation running
+ startSim();
+</script>
+  
+
+</body></html>

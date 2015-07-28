@@ -1,0 +1,166 @@
+/* my styles which should be uniformly added to my server and Blogger */
+@CHARSET "UTF-8";
+
+/**********************************************************************
+ * Headers
+ **********************************************************************/
+.h1
+{
+font-size: 18px;
+font-weight: bold;
+border-bottom: solid 1px #808080;
+background-color: #F0F0F0;
+}
+
+.h2
+{
+font-size: 14px;
+font-weight: bold;
+text-transform: none;
+background-color: #E0F0F0;
+border-bottom: dashed 1px #808080;
+}
+
+.h3
+{}
+
+.h4
+{}
+
+/**********************************************************************
+ * Heading for describing errors and how to fix them
+ * Should be used with .h1, .h2, ...etc
+ **********************************************************************/
+.error_heading
+{
+background-color: #F0E0E0;
+}
+
+/**********************************************************************
+ * toggle: Style used for table of contents toggling
+ **********************************************************************/
+.toggle
+{
+text-decoration:none !important;
+}
+.toggle
+{
+text-decoration:none;
+}
+
+/**********************************************************************
+ * Quotes
+ * .quote: for quoting resources/people
+ * .quote_ref: Reference 
+ * .console: quoting program output
+ **********************************************************************/
+.quote
+{
+	font-style: italic;
+	background-color: rgba(215, 215, 240, 1);
+	margin-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-right: 1em;
+	white-space: pre-wrap;	
+}
+
+.quote_ref
+{
+	margin-top: 0.5em;
+	margin-left: 1.5em;
+	font-weight: bold;
+}
+
+.quote_ref:before
+{
+	content: '--';
+}
+
+/* Basically extend quote and adds a few extra elements */
+.console
+{
+	font-style: italic;
+	background-color: rgba(215, 215, 240, 1);
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	white-space: pre-wrap;
+	
+	display: block;
+	font-family: monospace;
+}
+
+/**********************************************************************
+ * Notes: interjections inserted on a new-line
+ **********************************************************************/
+.note
+{
+	font-style: italic;
+	background-color: rgba(220, 220, 250, 0.5);
+	width: 100%;
+}
+
+/**********************************************************************
+ * Highlight: Emphasize something inline
+ **********************************************************************/
+.highlight
+{
+	font-style: italic;
+	font-weight: bold;
+	background-color: rgba(220, 220, 250, 1);
+	font-family: sans-serif;
+}
+
+/**********************************************************************
+ * Captions
+ **********************************************************************/
+.caption
+{
+	text-align: center;
+	font-weight: bold;
+	margin: auto auto 1em auto;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.figure div
+{
+	text-align: center;
+	font-weight: bold;
+	margin: auto auto 1em auto;
+	margin-top: 0.75em;
+	margin-bottom: 0.5em;
+}
+
+/**********************************************************************
+ * Figures
+ **********************************************************************/
+.figure
+{
+	text-align: center;
+}
+
+/**********************************************************************
+ * Tables
+ **********************************************************************/
+table
+{
+	margin: auto;
+	border-collapse: collapse;
+}
+
+table th
+{
+	border: solid 1px;
+	border-bottom: solid 1px;
+	padding: 2px;
+}
+
+table td
+{
+	padding: 2px;
+	border: solid 1px;
+	border-width: 1px;
+}
